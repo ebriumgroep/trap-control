@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+<title>Erbuim Project</title>
+
+<style>
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.trap {
+    background-color: grey;
+          height: 200px;
+          width:200px;
+          margin-left: 20px;
+          margin-top: 10px;
+          float:left;
+}
+#heading {
+            margin:auto;
+            width: 800px;
+            height: 400px;
+            background-color: #696969;;
+            position: absolute;
+            top:4;
+            bottom: 4;
+            left: 0;
+            right: 0;
+
+         }
+
+
+#menu {
+         background-color:#DCDCDC;
+         height: 600px;
+      }
+.buttons{
+    background-color: rgb(255, 238, 0);
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+</head>
+
+
+<body onload="displayNumOfTraps()">
+
+<div id="menu">
+<label style="margin-left: 1100px">Settings</label>
+<label style="margin-left: 20px">Contact Us</label>
+<label style="margin-left: 20px">About Us</label><br><br><br>
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Traps')">Traps</button>
+  <button class="tablinks" onclick="openCity(event, 'Graphs')">Graphs</button>
+</div>
+
+
+
+<div id="Traps" class="tabcontent">
+
+<p>This is an overview of all the registered traps in your name<p><br>
+<form action = "Erbuim_AddTrap.html">
+    <input type="submit" class="buttons" value="Add another trap">
+</form>
+<!-- testing trap add locally on this html page -->
+<button onclick="addTrap()">test trap add</button>
+
+<label id="trapNo"></label><br>
+
+<label style="margin-left: 20px">Sort Traps By :</label>
+<select>
+  <option value="numOfMoths">Number of moths</option>
+  <option value="Temp">Temprature</option>
+  <option value="GroupMac">Group Macadamia</option>
+  <option value="GroupOrch">Group Orchard</option>
+    <option value="Add another group">Add another group</option>
+</select><br><br>
+
+<div id="traps">
+    <!-- <button class="trap" style="width:200px">Trap 1</button>
+    <button class="trap" style="width:200px;margin-left: 20px">Trap 2</button>
+    <button class="trap" style="width:200px;margin-left: 20px">Trap 3</button>
+    <button class="trap" style="width:200px;margin-left: 20px">Trap 4</button>
+    <button class="trap" style="width:200px;margin-left: 20px">Trap 5</button><br><br> -->
+</div>
+
+<br><br>
+<button style="position:absolute;left:0;bottom:0;">Upload Data File (move to on trap click)</button>
+
+</div>
+
+
+<div id="Graphs" class="tabcontent" style ="height:490px">
+
+<label style ="margin-left: 300px">Start Date :</label> <input type="text" id="start" style="margin-left: 20px">
+<label style="margin-left: 20px">End Date :</label> <input type="text" id="start" style="margin-left: 20px">
+
+
+<label style="margin-left: 20px">Filter :</label>
+<select>
+  <option value="individual">Individual</option>
+  <option value="groups">Groups</option>
+</select><br><br>
+
+
+<div id="heading"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<button style ="width: 130px;margin-left: 160px;">Export</button>
+<button style ="margin-left: 20px;width: 130px">Email</button>
+<button style ="margin-left: 20px;width: 130px">Print</button>
+
+</div>
+
+<script>
+
+//trap management
+var numOfTraps = 0;
+function displayNumOfTraps()
+{
+    //return "haha" + numOfTraps;
+    //alert("asd");
+    document.getElementById("trapNo").innerHTML = "The number of traps atm is: " + numOfTraps;
+}
+function addTrap()
+{
+    numOfTraps++;
+    var tempName = prompt("Please enter a temp name for testing","");
+    var iDiv = document.createElement('div');
+    iDiv.id = tempName;
+    iDiv.className = "trap";
+    iDiv.onclick = function(){
+        if(trapClick() == "yes")
+        {
+            this.parentElement.removeChild(this);
+            numOfTraps--;
+            displayNumOfTraps();
+        }
+    } 
+    document.getElementById("traps").appendChild(iDiv);
+    var iHeader = document.createElement('header');
+    var iFile = document.createElement('input');
+    iFile.type = "file";
+    iHeader.innerHTML = tempName;
+    iDiv.appendChild(iHeader);
+    iDiv.appendChild(iFile);
+    displayNumOfTraps();
+}
+function trapClick(){
+    if(confirm("Delete?"))
+        return "yes";
+    else
+        return "no";
+}
+//for the tab    
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+</script>
+	
+</body>
+
+
+
+
+
+</html>
