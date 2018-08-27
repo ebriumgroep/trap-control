@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Erbium</title>
+	<script src="./jquery-3.2.1.js"></script>
+	<script>
+		$(document).ready(function(){
+        	$.ajax({ 
+        		type: "GET",   
+                url: "getTraps.php",   
+                async: false,
+                success : function(text)
+                {
+                    console.log(text);
+                }
+        	});
+        });
+	</script>
+</head>
+<body>
+	<!-- <h1>Erbium Sign Up</h1>
+	<form method="post" action="signup.php">
+		<fieldset>
+			Full Name:<br><input type="text" name="fullname"><br>
+			Username:<br><input type="text" name="username"><br>
+			Password:<br><input type="password" name="password"><br>
+			<input type="submit" name="Submit">
+			<input type="reset">
+		</fieldset>
+	</form> -->
+
+	<!-- <h1>Erbium Sign In</h1>
+	<form method="post" action="signin.php">
+		<fieldset>
+			Username:<br><input type="text" name="username"><br>
+			Password:<br><input type="password" name="password"><br>
+			<input type="submit" name="Submit">
+			<input type="reset">
+		</fieldset>
+	</form> -->
+
+	<!-- <h1>Adding Trap</h1>
+	<form method="post" action="addTrap.php">
+		<fieldset>
+			Trap Type:<br><input type="text" name="type"><br>
+			Hardware ID:<br><input type="text" name="hardware"><br>
+			<input type="submit" name="Submit">
+			<input type="reset">
+		</fieldset>
+	</form> -->
+
+	<!-- View Traps -->
+	<!-- <div id="myTraps">
+		
+	</div> -->
+
+	
+</body>
+</html>
