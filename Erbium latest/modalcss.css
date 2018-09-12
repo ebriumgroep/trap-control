@@ -1,0 +1,39 @@
+
+#modal {
+    position:fixed;
+    top: 40%;
+    left: 50%;
+    width:30em;
+    height:25em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+    visibility: hidden;
+    color:black;
+}
+#modal2 {
+    position:fixed;
+    top: 40%;
+    left: 50%;
+    width:30em;
+    height:25em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+    visibility: hidden;
+    color:black;
+}
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+.close-button:hover {
+    background-color: darkgray;
+}
