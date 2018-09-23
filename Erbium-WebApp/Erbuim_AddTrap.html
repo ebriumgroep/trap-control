@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+<title>Erbuim Project</title>
+<script type="text/javascript" src="addTrapssssss.js"></script>
+<style>
+
+#heading {
+            background-color: lawngreen;
+         }
+
+h1 {
+        text-align: center;
+        color: black;
+   }
+#trapInfo{
+        border: 2px solid black;
+        width:700px;
+        margin:0 auto;
+        height: 700px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+<div id="heading">
+        <h1>Add another trap</h1>
+</div>
+
+<div id= "trapInfo">
+        <form method="POST">
+             Select trap type:
+             <select name="type">
+                     <option value = "Moths">Moth sensor</option>
+             </select>   <br>
+             Enter Hardware ID (found on trap/device): 
+             <input type="text" name="hardware"><br>
+             Select upload interval:
+             <select name="upload_interval">
+                     <option value="Every hour">Every hour</option>
+                     <option value="Five times per day">Five times a day</option>
+                     <option value="Three times per day">Three times a day</option>
+                     <option value="Once per day">Once a day</option>
+             </select>  <br>
+             Select location:<br><br>
+
+             <h1>My First Google Map</h1>
+
+                <div id="googleMap" style="width:100%;height:400px;"></div>
+
+                <script>
+                        function myMap() {
+                                var mapProp= {
+                                        center:new google.maps.LatLng(-25.755417,28.230767),
+                                        zoom:5,
+                                };
+                                var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                        }
+                </script>
+
+                <script src="https://maps.googleapis.com/maps/api/js?AIzaSyD-INs4-fin3CKhBWpuSq0bTPeLKgq_YjU&callback=myMap"></script>
+
+             <br>
+             <input type="submit" formaction="addTrap.php">
+        </form>
+</div>
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Erbuim Login</title>
+    <script src="jquery-3.2.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="signInStyles.css">
+
+    <script>
+        function showToast(){
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        $(document).ready(function(){
+            $.get("checkLoggedIn.php", function(data){
+                // console.log(data);
+                if(data == true){
+                    window.location.href = "Erbuim_Main.html";
+                }
+            });
+
+            $("#formID").submit(function(event) {
+                // console.log(event);
+
+                // stop form from submitting normally
+                event.preventDefault();
+
+                // get the action attribute from the <form action=""> element
+                var $form = $( this ),
+                    url = $form.attr( 'action' );
+
+                // Send the data using post with element id name and name2
+                $.post( "signin.php", { username: $('#username').val(), password: $('#password').val() }, function(data, status){
+                    console.log(data);
+                    if(data == 0){
+                        document.getElementById("snackbar").innerHTML = "Access Granted";
+                        window.location.href = "Erbuim_Main.html";
+                        showToast();
+                    }else if(data == 1){
+                        document.getElementById("snackbar").innerHTML = "Password entered is wrong!";
+                        showToast();
+                    }
+                    else if(data == 2){
+                        document.getElementById("snackbar").innerHTML = "Incorrect username or password!";
+                        showToast();
+                    }
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="heading">
+
+    <h1>Erbuim</h1><br>
+    <form id="formID" method="POST">
+        <label style="margin-left: 100px">Username :</label>
+        <input type="text" id ="username" name="username" style="margin-left: 20px"><br><br>
+        <label style="margin-left: 100px">Password :</label>
+        <input type="text" id ="password" name="password" style="margin-left: 23px"><br><br><br>
+
+        <!--<button type="button"  style="margin-left: 110px;width: 130px">Login</button>
+        <button type="button"  style="margin-left: 110px;width: 130px">Forgot Password</button>-->
+
+        <input type="submit" formaction="signin.php" value="Login" style="margin-left: 110px;width: 130px">
+        <input type="submit" formaction="Erbuim_ForgotPassword.html" value="Forgot Password" style="margin-left: 10px;width: 130px">
+    </form>
+
+</div>
+
+<div id="snackbar"></div>
+</body>
+</html>
