@@ -79,17 +79,19 @@
                     tempText.type = "text";
                     tempText.id = "tempText";
                     tempText.value = "23";
+					tempText.style.width = "50px";
                 var humidText = document.createElement("input");
                     humidText.type = "text";
                     humidText.id = "humidText";
                     humidText.value = "12";
+					humidText.style.width = "50px";
                 var tokenText = document.createElement("header");
                     tokenText.innerHTML = "Caught: " + token;
-                    tokenText.style.fontSize = "40px";
+                    tokenText.style.fontSize = "30px";
 
                 document.getElementById("traps").appendChild(iDiv);
                 var iHeader = document.createElement('header');
-                iHeader.innerHTML = "Hardware ID nom: " + tempName;
+                iHeader.innerHTML = "Hardware ID: " + tempName;
                 iDiv.appendChild(iHeader);
                 iDiv.appendChild(clickMe);
                 iDiv.appendChild(tokenText);
@@ -248,10 +250,56 @@
                         <option value="threeperday">Three times a day</option>
                         <option value="onceperday">Once a day</option>
         			</select><br>
+					<p>Please select the location of the trap you want to add below</p>
+					<div id="googleMap" style="width:400px;height:220px;"></div>
+
+                <script>
+				var myLat;
+				var myLong;
+				function myMap() {
+					var mapProp= {
+						center:new google.maps.LatLng(-25.755417,28.230767),
+						zoom:13,
+					};
+					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+					google.maps.event.addListener(map, 'click', function(event) {
+						//myLat = event.latLng.lat();
+						//myLong = event.LatLng.lng();
+						//alert(myLat);
+						document.getElementById("lblLat").value = event.latLng.lat();
+						myLat = document.getElementById("lblLat").innerHTML;
+						document.getElementById("lblLong").value = event.latLng.lng();
+						myLong = document.getElementById("lblLong").innerHTML;
+					});
+					map.addListener('click', function(e) {
+						//myLong = e.;
+						//alert("ok: " + myLong);
+						placeMarker(e.latLng, map);	
+					});
+
+				}
+				var marker;
+				function placeMarker(position, map) {
+					if (marker && marker.setMap) {
+						marker.setMap(null);
+					}
+					marker = new google.maps.Marker({
+						position: position,
+						map: map
+					});
+					map.panTo(position);
+				}
+						
+                </script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-INs4-fin3CKhBWpuSq0bTPeLKgq_YjU&callback=myMap" type="text/javascript"></script>
+			 <label>Lat: </label><input type="text" id="lblLat" name="trapLat">
+			 <label>Long: </label><input type="text" id="lblLong" name="trapLong"><br>
         			<input type="submit" value="Submit">
         		</form>
                 
-                <button onclick="document.location.reload()">Submit</button>
+                <!-- <button onclick="document.location.reload()">Submit</button> -->
 
         </div>
         <div id="traps"> <!-- traps will be displayed in here -->

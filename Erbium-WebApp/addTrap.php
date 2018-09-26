@@ -21,17 +21,22 @@
 	$active_token = 0;
 	$active_type = $_POST['type'];
 	$active_uploadInterval = $_POST['upload_interval'];
+	//new
+	$active_lat = $_POST['trapLat'];
+	$active_long = $_POST['trapLong'];
 
 
-	
+	//just need to add the lat and long and hardware id to the location table as well
 	$sql = "INSERT INTO device(client_id, hardware_id, token, type, Upload_Interval)
-			VALUES ('$active_client', '$active_hardware', $active_token, '$active_type','$active_uploadInterval')";
+			VALUES ('$active_client', '$active_hardware', $active_token, '$active_type','$active_uploadInterval');
+			INSERT INTO location(device_id,latitude,longitude)
+			VALUES ('$active_hardware','$active_lat','$active_long');";
 
 	$fullname = $_SESSION['fullname'];
 
-	if($conn->query($sql) === true){
+	if($conn->multi_query($sql) === true){
 		$conn->close();
-		header("Location:Erbuim_Main.php");
+		header("Location:Erbuim_Main.html");
 		// echo "<script>
 		// window.location.href = 'Erbuim_Main.php';
 	  // </script>";
