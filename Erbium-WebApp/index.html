@@ -5,7 +5,7 @@
     <title>Erbuim Login</title>
     <script src="jquery-3.2.1.js"></script>
     <link rel="stylesheet" type="text/css" href="signInStyles.css">
-
+<link rel="stylesheet" type="text/css" href="index.css">
     <script>
         function showToast(){
             var x = document.getElementById("snackbar");
@@ -53,22 +53,15 @@
     </script>
 </head>
 <body>
-<div id="heading">
+<div class="log-form">
 
-    <h1>Erbuim</h1><br>
+    <h2>Login to your Erbium account</h2>
     <form id="formID" method="POST">
-        <label style="margin-left: 100px">Username :</label>
-        <input type="text" id ="username" name="username" style="margin-left: 20px"><br><br>
-        <label style="margin-left: 100px">Password :</label>
-        <input type="text" id ="password" name="password" style="margin-left: 23px"><br><br><br>
-
-        <!--<button type="button"  style="margin-left: 110px;width: 130px">Login</button>
-        <button type="button"  style="margin-left: 110px;width: 130px">Forgot Password</button>-->
-
-        <input type="submit" formaction="signin.php" value="Login" style="margin-left: 110px;width: 130px">
-        <input type="submit" formaction="Erbuim_ForgotPassword.html" value="Forgot Password" style="margin-left: 10px;width: 130px">
+        <input type="text" id ="username" name="username" class="input_" placeholder="Username">
+        <input type="text" id ="password" name="password" class="input_" placeholder="Password">
+        <input type="submit" formaction="signin.php" value="Login" class="btn">
+        <a class="forgot" href="#">Forgot Username?</a>
     </form>
-
 </div>
 
 <div id="snackbar"></div>

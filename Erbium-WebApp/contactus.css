@@ -1,0 +1,38 @@
+#ContactDiv{
+	width: 50em;
+	height:35em;
+	background: url("contactus.jpg") no-repeat center center fixed;
+	left: 20%;
+	position: absolute;
+	background-size:contain;
+	filter: blur(2px);
+  -webkit-filter: blur(2px);
+  z-index:1;
+
+}
+#contactDetails{
+	position:absolute;
+	z-index:2;
+	left:42%;
+	color:white;
+}
+h2{
+	text-align: center;
+}
+#Pdetails{
+	text-align:center;
+
+}
+#Kdetails{
+	text-align:center;
+}
+#support{
+	text-align:center;
+}
+.details{
+	background-color:rgba(0, 0, 0, 0.5);
+	padding:3px;
+	border-radius:3px;
+	position:relative;
+	left:-23%;
+}

@@ -149,7 +149,7 @@
                 // Get all elements with class="tablinks" and remove the class "active"
                 tablinks = document.getElementsByClassName("tablinks");
                 for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    tablinks[i].className = tablinks[i].className.replace("active", "");
                 }
 
                 // Show the current tab, and add an "active" class to the button that opened the tab
@@ -160,16 +160,24 @@
             function addTrap(){
                 document.getElementById("modal2").style.visibility = "visible";
             }
+			function displayGraphs(){
+			document.getElementById("Traps").style.display = "none";
+			document.getElementById("Graphs").style.display = "block";
+			}
+			function displayTraps(){
+			document.getElementById("Traps").style.display = "block";
+			document.getElementById("Graphs").style.display = "none";
+			}
         </script>
     </head>
 
 
-    <body>
+    <body onload="openCity(event, 'Traps')">
         <!-- PHP LOGIN WAS HERE -->
 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand/logo -->
-            <a class="navbar-brand" href="#">Erbium Insect Tracker</a>
+            <a class="navbar-brand" href="Erbuim_Main.html">Erbium Insect Tracker</a>
 
             <!-- Links -->
             <ul class="navbar-nav">
@@ -177,7 +185,7 @@
                     <a class="nav-link" href="#">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact us</a>
+                    <a class="nav-link" href="contactus.html">Contact us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">Logout</a>
@@ -192,23 +200,24 @@
 
         </div>-->
 
-        <!-- Tab links -->
+        <!-- Tab links openCity(event, 'Traps') -->
         <div class="tab">
-          <button class="tablinks" onclick="openCity(event, 'Traps')">Traps</button>
+          <button class="tablinks" id="trapTab" onclick="openCity(event, 'Traps')">Traps</button>
           <button class="tablinks" onclick="openCity(event, 'Graphs')">Graphs</button>
         </div>
 
 
-
+		
+		
         <div id="Traps" class="tabcontent">
         <!-- <p> Welcome <?php echo $_SESSION['fullname']; ?>. This is an overview of all the registered traps in your name<p><br> -->
         <button onclick="addTrap()" class="buttons">Add Trap</button><br>
         <!-- testing trap add locally on this html page 
         <button onclick="addTrapDiv()">test trap add</button> -->
 
-        <label id="trapNo"></label><br>
+        <label id="trapNo" style="color:white;"></label><br>
 
-        <label style="margin-left: 20px">Sort Traps By :</label>
+        <label style="margin-left: 20ps;color:white;" >Sort Traps By :</label>
         <select>
           <option value="numOfMoths">Number of moths</option>
           <option value="Temp">Temprature</option>
@@ -239,7 +248,10 @@
 
         </div>
         <div id="modal2" name="addTrapModal">
+				
                 <span class="close-button" onclick="close_click()"> X </span>
+				<div id="innerTrapModal" style="border-radius:8px;">
+				<h2>Add another trap</h2>
         		<form method="POST" action="addTrap.php">
         			Trap Type: <input type="text" id="addTraptype" name="type"><br>
         			Hardware ID: <input type="text" id="addTraphardware" name="hardware"><br>
@@ -251,7 +263,7 @@
                         <option value="onceperday">Once a day</option>
         			</select><br>
 					<p>Please select the location of the trap you want to add below</p>
-					<div id="googleMap" style="width:400px;height:220px;"></div>
+					<div id="googleMap" style="width:425px;height:220px;"></div>
 
                 <script>
 				var myLat;
@@ -297,18 +309,21 @@
 			 <label>Lat: </label><input type="text" id="lblLat" name="trapLat">
 			 <label>Long: </label><input type="text" id="lblLong" name="trapLong"><br>
         			<input type="submit" value="Submit">
+					
         		</form>
+				<button onclick="close_click()">Cancel    </button>
+				</div>
+				
                 
                 <!-- <button onclick="document.location.reload()">Submit</button> -->
 
         </div>
+		
         <div id="traps"> <!-- traps will be displayed in here -->
 
         </div>
-
-
-        <div id="Graphs" class="tabcontent" style ="height:490px">
-
+		</div>
+        <div id="Graphs" >
         <label style ="margin-left: 300px">Start Date :</label> <input type="text" id="start" style="margin-left: 20px">
         <label style="margin-left: 20px">End Date :</label> <input type="text" id="start" style="margin-left: 20px">
 
@@ -326,8 +341,6 @@
         <button style ="margin-left: 20px;width: 130px">Print</button>
 
         </div>
-
-        <!-- <script type="text/javascript" src="addTrap.js"></script> -->
-        	
+		</div>
     </body>
 </html>
